@@ -1,0 +1,81 @@
+import sqlite3
+
+
+def guardar_datos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais):
+    
+    """En esta funcion se crea la base de datos si no exite y se agregan los datos """
+
+    conexion = sqlite3.connect("bd.db")
+    micursor = conexion.cursor()
+    try:
+        micursor.execute("""
+                            create table pacientes(
+                            id integer primary key autoincrement,
+                            nombre text,
+                            apellido text,
+                            edad real,
+                            dni real,
+                            telefono real,
+                            email text,
+                            calle text,
+                            altura text,
+                            ciudad text,
+                            provincia text,
+                            pais text
+                            )
+                        """)
+        print("Se ha creado exitosamente la tabla pacientes")
+    except sqlite3.OperationalError:
+        print("la tabla articula ya existe")
+    conexion.close()
+
+    conexion=sqlite3.connect("bd.db")
+    micursor = conexion.cursor()
+    
+    micursor.execute("insert into pacientes(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais) values(?,?,?,?,?,?,?,?,?,?,?)",(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais))
+
+    conexion.commit()
+    conexion.close()
+    
+
+
+
+
+# nombre = input("ingrese su nombre: ")
+# edad = int(input("ingrese su edad: "))
+
+
+# print(guardar_datos(nombre,edad))
+
+
+def buscar_pacientes_all():
+    """ Esta funcion se usa para traer todos los datos de los pacientes"""
+    conexion = sqlite3.connect("bd.db")
+    cursor = conexion.cursor()
+
+    cursor.execute("SELECT * FROM pacientes")
+
+    pacientes = cursor.fetchall()
+
+    for cliente in pacientes:
+        print(cliente)
+
+    conexion.commit()
+    conexion.close()
+
+
+# print(buscar_pacientes_all())
+
+
+def editar_un_usuario(usuario):
+    conexion = sqlite3.connect("bd.db")
+
+    cursor = conexion.cursor()
+
+    cursor.execute("UPDATE pacientes set nombre='nombre'"  "WHERE edad=edad")
+
+    conexion.commit()
+    conexion.close()
+
+
+
