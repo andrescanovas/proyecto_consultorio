@@ -4,6 +4,8 @@ from crearsb import *
 
 
 def alta_de_paciente():
+    """Esta funcion sirve para crear una ventana emergente en la cual se mostraran los campos para dar de alta un paciente y no requiere ingresar datos en la funcion"""
+
     new_window = Toplevel()
     new_window.title("Formulario de ingreso")
 
