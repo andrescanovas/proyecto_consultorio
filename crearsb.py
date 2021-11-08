@@ -48,6 +48,45 @@ def guardar_datos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,pr
 # print(guardar_datos(nombre,edad))
 
 
+
+def guardar_datos_de_medicos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais):
+    
+    """En esta funcion se crea la base de datos y la tabla medicos si no exite y se agregan los datos """
+
+    conexion = sqlite3.connect("bd.db")
+    micursor = conexion.cursor()
+    try:
+        micursor.execute("""
+                            create table medicos(
+                            id integer primary key autoincrement,
+                            nombre text,
+                            apellido text,
+                            edad real,
+                            dni real,
+                            telefono real,
+                            email text,
+                            calle text,
+                            altura text,
+                            ciudad text,
+                            provincia text,
+                            pais text
+                            )
+                        """)
+        print("Se ha creado exitosamente la tabla medicos")
+    except sqlite3.OperationalError:
+        print("la tabla articula ya existe")
+    conexion.close()
+
+    conexion=sqlite3.connect("bd.db")
+    micursor = conexion.cursor()
+    
+    micursor.execute("insert into medicos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais) values(?,?,?,?,?,?,?,?,?,?,?)",(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais))
+
+    conexion.commit()
+    conexion.close()
+
+
+
 def buscar_pacientes_all():
     """ Esta funcion se usa para traer todos los datos de los pacientes"""
     conexion = sqlite3.connect("bd.db")
