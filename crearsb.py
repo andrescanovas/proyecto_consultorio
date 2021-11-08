@@ -32,7 +32,11 @@ def guardar_datos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,pr
     conexion=sqlite3.connect("bd.db")
     micursor = conexion.cursor()
     
-    micursor.execute("insert into pacientes(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais) values(?,?,?,?,?,?,?,?,?,?,?)",(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais))
+
+    datos=nombre.get(),apellido.get(),edad.get(),dni.get(),telefono.get(),email.get(),calle.get(),altura.get(),ciudad.get(),provincia.get(),pais.get()
+    micursor.execute("insert into pacientes values(NULL,?,?,?,?,?,?,?,?,?,?,?)",(datos))
+    
+    limpiar_campos_pacientes()
 
     conexion.commit()
     conexion.close()
@@ -115,6 +119,20 @@ def editar_un_usuario(usuario):
 
     conexion.commit()
     conexion.close()
+
+
+def limpiar_campos_pacientes():
+    nombre.set("")
+    apellido.set("")
+    edad.set("")
+    dni.set("")
+    telefono.set("")
+    email.set("")
+    calle.set("")
+    altura.set("")
+    ciudad.set("")
+    provincia.set("")
+    pais.set("")
 
 
 

@@ -82,7 +82,7 @@ def alta_de_paciente():
 
 
 
-    Boton1 = Button(new_window, text='Enviar', command=lambda:guardar_datos(nombre.get(),apellido.get(),edad.get(),dni.get(),telefono.get(),email.get(),calle.get(),altura.get(),ciudad.get(),provincia.get(),pais.get()))
+    Boton1 = Button(new_window, text='Enviar', command=lambda:guardar_datos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais))
     Boton1.grid(row = 20,column = 4, sticky="e",padx=5,pady=5 )
 
     Boton1 = Button(new_window, text='Cancelar',command=new_window.destroy)
