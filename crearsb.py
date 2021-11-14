@@ -1,7 +1,8 @@
 import sqlite3
+from tkinter import messagebox
 
 
-def guardar_datos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais):
+def guardar_datos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais,medicocab):
     
     """En esta funcion se crea la base de datos si no exite y se agregan los datos """
 
@@ -21,7 +22,8 @@ def guardar_datos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,pr
                             altura text,
                             ciudad text,
                             provincia text,
-                            pais text
+                            pais text,
+                            medicoCabe text
                             )
                         """)
         print("Se ha creado exitosamente la tabla pacientes")
@@ -33,13 +35,16 @@ def guardar_datos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,pr
     micursor = conexion.cursor()
     
 
-    datos=nombre.get(),apellido.get(),edad.get(),dni.get(),telefono.get(),email.get(),calle.get(),altura.get(),ciudad.get(),provincia.get(),pais.get()
-    micursor.execute("insert into pacientes values(NULL,?,?,?,?,?,?,?,?,?,?,?)",(datos))
+    datos=nombre.get(),apellido.get(),edad.get(),dni.get(),telefono.get(),email.get(),calle.get(),altura.get(),ciudad.get(),provincia.get(),pais.get(),medicocab.get()
+    micursor.execute("insert into pacientes values(NULL,?,?,?,?,?,?,?,?,?,?,?,?)",(datos))
     
-    limpiar_campos_pacientes()
+    
 
     conexion.commit()
     conexion.close()
+
+    
+
     
 
 
@@ -106,8 +111,36 @@ def buscar_pacientes_all():
     conexion.commit()
     conexion.close()
 
+# ============================BUSCAR PACIENTES===========================
 
-# print(buscar_pacientes_all())
+    # def buscar_pacientes_por_nombre(nombre):
+        # """ Esta funcion se usa para traer los datos de los pacientes individualmente por nombre """
+
+# nombre = "Andres"
+
+# conexion = sqlite3.connect("bd.db")
+# cursor = conexion.cursor()
+# sqlcon = "SELECT * FROM pacientes WHERE nombre = ?;"
+# cursor.execute(sqlcon,(nombre,))
+
+# registros = cursor.fetchall()
+
+# for r in registros:
+#     print(r)
+
+# conexion.commit()
+# conexion.close()
+
+# print()
+
+
+    
+
+
+        
+
+
+# print(buscar_pacientes
 
 
 def editar_un_usuario(usuario):
@@ -121,7 +154,7 @@ def editar_un_usuario(usuario):
     conexion.close()
 
 
-def limpiar_campos_pacientes():
+def limpiar_campos_pacientes(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais):
     nombre.set("")
     apellido.set("")
     edad.set("")
@@ -133,6 +166,12 @@ def limpiar_campos_pacientes():
     ciudad.set("")
     provincia.set("")
     pais.set("")
+
+
+def cerrar_sistema(hola):
+    if messagebox.askokcancel("Quit", "Quieres salir del Sistema de Turnos?"):
+        hola.destroy()
+
 
 
 

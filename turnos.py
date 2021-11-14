@@ -8,7 +8,7 @@ def turnos():
     new_window.title("Turnos")
 
 
-
+# ===========================CAMPOS=============================
 
     lblnombre = Label(new_window, text="Nombre")
     lblnombre.grid(row=0, column=0, sticky="e", padx=5, pady=5)								
@@ -31,6 +31,13 @@ def turnos():
 
 
 
+
+# =============================IMPRIMIR TURNO=========================
+
+
+
+
+# =============================BOTONES=================================
 
 
     Boton1 = Button(new_window, text='Enviar')
