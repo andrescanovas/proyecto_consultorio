@@ -80,10 +80,10 @@ def alta_de_paciente():
     ntrpais.grid(row=4, column=5, padx=5, pady=5)
 
     lblmedicocab = Label(new_window, text="MEDICO CABECERA")
-    lblmedicocab.grid(row=4, column=4, sticky="e", padx=5, pady=5)						
+    lblmedicocab.grid(row=4, column=6, sticky="e", padx=5, pady=5)						
     medicocab= StringVar()
     ntrmedicocab = Entry(new_window,textvariable=pais)
-    ntrmedicocab.grid(row=4, column=5, padx=5, pady=5)
+    ntrmedicocab.grid(row=4, column=7, padx=5, pady=5)
 
 
 

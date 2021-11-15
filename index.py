@@ -83,33 +83,15 @@ def seleccionarUsandoClick(event):
 	miDNI.set(tree.item(item,"values")[3])
 	miTelefono.set(tree.item(item,"values")[4])
 	miEmail.set(tree.item(item,"values")[5])
+	miCalle.set(tree.item(item,"values")[6])
+	miAltura.set(tree.item(item,"values")[7])
+	miCiudad.set(tree.item(item,"values")[8])
+	miProvincia.set(tree.item(item,"values")[9])
+	miPais.set(tree.item(item,"values")[10])
 
 
 tree.bind("<Double-1>", seleccionarUsandoClick)
 
-
-# def mostrar(tipo):
-
-# 	""" En esta funcion se muestran los registros de las tablas "paciente" y "medico" de la base de datos bd """
-# 	miConexion=sqlite3.connect("bd.db")
-# 	miCursor=miConexion.cursor()
-# 	registros=tree.get_children()
-# 	for elemento in registros:
-# 		tree.delete(elemento)
-
-# 	try:
-# 		if tipo==0:
-# 			tipo1="pacientes"
-			
-# 			ltipos.config(text='PACIENTES')
-# 		else:
-# 			tipo1="medicos"
-# 			ltipos.config(text='MEDICOS')
-# 		miCursor.execute("SELECT * FROM " + tipo1)
-# 		for row in miCursor:
-# 			tree.insert("",0,text=row[0], values=(row[1],row[2],row[3],row[4],row[5],row[6]))
-# 	except:
-# 		pass
 
 def actualizar():
 	miConexion=sqlite3.connect("bd.db")
@@ -123,8 +105,8 @@ def actualizar():
 			tipo1="medicos"
 			tipo2=1
 
-		datos=miNombre.get(),miApellido.get(),miEdad.get(),miDNI.get(),miTelefono.get(),miEmail.get()
-		miCursor.execute("UPDATE "+ tipo1 +" SET NOMBRE=?, Apellido=?, Edad=?, dni=?, telefono=?, email=? WHERE ID="+miId.get(), (datos))
+		datos=miNombre.get(),miApellido.get(),miEdad.get(),miDNI.get(),miTelefono.get(),miEmail.get(),miCalle.get(),miAltura.get(),miCiudad.get(),miProvincia.get(),miPais.get()
+		miCursor.execute("UPDATE "+ tipo1 +" SET NOMBRE=?, Apellido=?, Edad=?, dni=?, telefono=?, email=?, calle=?, altura=?, ciudad=?, provincia=?, pais=? WHERE ID="+miId.get(), (datos))
 		
 		miConexion.commit()
 	except:
@@ -247,7 +229,7 @@ def crear_turno():
 	apellido = tree.item(curItem)["values"][1]
 	dni = tree.item(curItem)["values"][3]
 
-	# print(tree.item(curItem))
+	print(tree.item(curItem))
 
 	dato = miCursor.execute("SELECT * FROM pacientes WHERE dni like '%"+dni+"%'")
 	
@@ -300,7 +282,7 @@ def mostrar(tipo):
 			ltipos.config(text='MEDICOS')
 		miCursor.execute("SELECT * FROM " + tipo1)
 		for row in miCursor:
-			tree.insert("",0,text=row[0], values=(row[1],row[2],row[3],row[4],row[5],row[6]))
+			tree.insert("",0,text=row[0], values=(row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11]))
 	except:
 		pass
 
