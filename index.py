@@ -88,6 +88,7 @@ def seleccionarUsandoClick(event):
 	miCiudad.set(tree.item(item,"values")[8])
 	miProvincia.set(tree.item(item,"values")[9])
 	miPais.set(tree.item(item,"values")[10])
+	miMedicocabe.set(tree.item(item,"values")[11])
 	
 
 
@@ -106,8 +107,8 @@ def actualizar():
 			tipo1="medicos"
 			tipo2=1
 
-		datos=miNombre.get(),miApellido.get(),miEdad.get(),miDNI.get(),miTelefono.get(),miEmail.get(),miCalle.get(),miAltura.get(),miCiudad.get(),miProvincia.get(),miPais.get()
-		miCursor.execute("UPDATE "+ tipo1 +" SET NOMBRE=?, Apellido=?, Edad=?, dni=?, telefono=?, email=?, calle=?, altura=?, ciudad=?, provincia=?, pais=? WHERE ID="+miId.get(), (datos))
+		datos=miNombre.get(),miApellido.get(),miEdad.get(),miDNI.get(),miTelefono.get(),miEmail.get(),miCalle.get(),miAltura.get(),miCiudad.get(),miProvincia.get(),miPais.get(),miMedicocabe.get()
+		miCursor.execute("UPDATE "+ tipo1 +" SET NOMBRE=?, Apellido=?, Edad=?, dni=?, telefono=?, email=?, calle=?, altura=?, ciudad=?, provincia=?, pais=?, medicoCabe=? WHERE ID="+miId.get(), (datos))
 		
 		miConexion.commit()
 	except:
@@ -212,6 +213,11 @@ l12.grid(row=3, column=5)
 e12=Entry(root, textvariable=miPais)
 e12.grid(row=3, column=6)
 
+l13=Label(root, text="MEDICO CABECERAAAAA")
+l13.grid(row=1, column=9)
+e13=Entry(root, textvariable=miMedicocabe)
+e13.grid(row=1, column=10)
+
 
 
 
@@ -226,11 +232,11 @@ def crear_turno():
 	apellido = tree.item(curItem)["values"][1]
 	dni = tree.item(curItem)["values"][3]
 
-	print(tree.item(curItem))
+	# print(tree.item(curItem))
 
-	dato = miCursor.execute("SELECT * FROM pacientes WHERE dni like '%"+dni+"%'")
+	# dato = miCursor.execute("SELECT * FROM pacientes WHERE dni like '%"+dni+"%'")
 	
-	print(tree.item(curItem)["values"][0],tree.item(curItem)["values"][1])
+	print("SE HA GENERADO UN TURNO PARA EL PACIENTE",tree.item(curItem)["values"][0],tree.item(curItem)["values"][1],"CON ",tree.item(curItem)["values"][11])
 	# print(dato.fetchall())
 
 	
@@ -279,7 +285,7 @@ def mostrar(tipo):
 			ltipos.config(text='MEDICOS')
 		miCursor.execute("SELECT * FROM " + tipo1)
 		for row in miCursor:
-			tree.insert("",0,text=row[0], values=(row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11]))
+			tree.insert("",0,text=row[0], values=(row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12]))
 	except:
 		pass
 

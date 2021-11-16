@@ -2,7 +2,7 @@ import sqlite3
 from tkinter import messagebox
 
 
-def guardar_datos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais,medicocab):
+def guardar_datos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais,medicoCabe):
     
     """En esta funcion se crea la base de datos si no exite y se agregan los datos """
 
@@ -35,7 +35,7 @@ def guardar_datos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,pr
     micursor = conexion.cursor()
     
 
-    datos=nombre.get(),apellido.get(),edad.get(),dni.get(),telefono.get(),email.get(),calle.get(),altura.get(),ciudad.get(),provincia.get(),pais.get(),medicocab.get()
+    datos=nombre.get(),apellido.get(),edad.get(),dni.get(),telefono.get(),email.get(),calle.get(),altura.get(),ciudad.get(),provincia.get(),pais.get(),medicoCabe.get()
     micursor.execute("insert into pacientes values(NULL,?,?,?,?,?,?,?,?,?,?,?,?)",(datos))
     
     
@@ -58,7 +58,7 @@ def guardar_datos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,pr
 
 
 
-def guardar_datos_de_medicos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais):
+def guardar_datos_de_medicos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais,medicoCabe):
     
     """En esta funcion se crea la base de datos y la tabla medicos si no exite y se agregan los datos """
 
@@ -78,7 +78,8 @@ def guardar_datos_de_medicos(nombre,apellido,edad,dni,telefono,email,calle,altur
                             altura text,
                             ciudad text,
                             provincia text,
-                            pais text
+                            pais text,
+                            medicoCabe
                             )
                         """)
         print("Se ha creado exitosamente la tabla medicos")
@@ -89,7 +90,10 @@ def guardar_datos_de_medicos(nombre,apellido,edad,dni,telefono,email,calle,altur
     conexion=sqlite3.connect("bd.db")
     micursor = conexion.cursor()
     
-    micursor.execute("insert into medicos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais) values(?,?,?,?,?,?,?,?,?,?,?)",(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais))
+    
+    datos=nombre.get(),apellido.get(),edad.get(),dni.get(),telefono.get(),email.get(),calle.get(),altura.get(),ciudad.get(),provincia.get(),pais.get(),medicoCabe.get()
+    micursor.execute("insert into medicos values(NULL,?,?,?,?,?,?,?,?,?,?,?,?)",(datos))
+    
 
     conexion.commit()
     conexion.close()

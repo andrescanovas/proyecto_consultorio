@@ -77,10 +77,16 @@ def alta_de_medico():
     ntrpais = Entry(new_window,textvariable=pais)
     ntrpais.grid(row=4, column=5, padx=5, pady=5)
 
+    lblmedicoCabe = Label(new_window, text="MEDICO CABECERA")
+    lblmedicoCabe.grid(row=4, column=6, sticky="e", padx=5, pady=5)						
+    medicoCabe= StringVar()
+    ntrlblmedicoCabe = Entry(new_window,textvariable=lblmedicoCabe)
+    ntrlblmedicoCabe.grid(row=4, column=7, padx=5, pady=5)
 
 
 
-    Boton1 = Button(new_window, text='Enviar', command=lambda:guardar_datos_de_medicos(nombre.get(),apellido.get(),edad.get(),dni.get(),telefono.get(),email.get(),calle.get(),altura.get(),ciudad.get(),provincia.get(),pais.get()))
+
+    Boton1 = Button(new_window, text='Enviar', command=lambda:guardar_datos_de_medicos(nombre,apellido,edad,dni,telefono,email,calle,altura,ciudad,provincia,pais,medicoCabe))
     Boton1.grid(row = 20,column = 4, sticky="e",padx=5,pady=5 )
 
     Boton1 = Button(new_window, text='Cancelar',command=new_window.destroy)
